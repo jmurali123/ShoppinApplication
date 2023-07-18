@@ -73,6 +73,7 @@ public class ShoppingCartPage extends BasePage {
         WebElement e= wait.until(ExpectedConditions.elementToBeClickable(prodImgButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",e);
         e.click();
+        //test
     }
 
 }
