@@ -28,5 +28,7 @@ public class shoppingCartstepDefinition {
             Assert.assertEquals(shoppingCartPage.getSummaryContent(), "Your Shopping Cart is empty!");
         }
 
+        shoppingCartPage.navToProductcategory();
+        shoppingCartPage.selProduct(data.get(0).get("product"));
     }
 }

@@ -1,10 +1,14 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import javax.swing.*;
 import java.util.List;
 
 public class ShoppingCartPage extends BasePage {
@@ -23,6 +27,12 @@ public class ShoppingCartPage extends BasePage {
 
     @FindBy(css=".order-summary-content")
     private WebElement orderSummaryContentLabel;
+
+    @FindBy(css="ul.top-menu>li:nth-child(2)>a")
+    private WebElement computerLink;
+
+    @FindBy(css="ul.top-menu>li:nth-child(2)>ul>li:nth-child(1)>a")
+    private WebElement desktopLink;
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
     }
@@ -47,6 +57,23 @@ public class ShoppingCartPage extends BasePage {
 
     public String getSummaryContent(){
         return wait.until(ExpectedConditions.visibilityOf(orderSummaryContentLabel)).getText();
+    }
+
+    public void navToProductcategory(){
+        wait.until(ExpectedConditions.visibilityOf(computerLink));
+        Actions act=new Actions(driver);
+        act.moveToElement(computerLink);
+        act.moveToElement(desktopLink);
+        act.click().build().perform();
+    }
+
+    public void selProduct(String productName){
+        String loc="img[alt='Picture of "+productName+"']";
+        By prodImgButton= By.cssSelector(loc);
+        WebElement e= wait.until(ExpectedConditions.elementToBeClickable(prodImgButton));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",e);
+        e.click();
+        //test
     }
 
 }
