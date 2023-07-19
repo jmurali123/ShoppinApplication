@@ -3,13 +3,8 @@ package selTests;
 import factory.DriverFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
-//import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.*;
 import utils.PropertyUtils;
-
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
