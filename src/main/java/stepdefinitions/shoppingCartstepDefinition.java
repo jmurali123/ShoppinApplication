@@ -3,6 +3,7 @@ package stepdefinitions;
 import context.DriverContext;
 //import dev.failsafe.internal.util.Assert;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import pages.PageFactoryManager;
@@ -30,5 +31,12 @@ public class shoppingCartstepDefinition {
 
         shoppingCartPage.navToProductcategory();
         shoppingCartPage.selProduct(data.get(0).get("product"));
+        shoppingCartPage.setQuantity(data.get(0).get("quantity"));
+        shoppingCartPage.addToCart();
+    }
+    @Then("I should see successmsg")
+    public void notificationVal(DataTable successMsgtbl){
+        List<Map<String,String>> data=successMsgtbl.asMaps(String.class,String.class);
+       Assert.assertEquals(shoppingCartPage.getNotificationmsg(),data.get(0).get("successMsg"));
     }
 }

@@ -33,6 +33,15 @@ public class ShoppingCartPage extends BasePage {
 
     @FindBy(css="ul.top-menu>li:nth-child(2)>ul>li:nth-child(1)>a")
     private WebElement desktopLink;
+
+    @FindBy(css=".qty-input")
+    private WebElement prdQtyText;
+
+    @FindBy(css="input.add-to-cart-button")
+    private WebElement addToCartButton;
+
+    @FindBy(css=".content")
+    private WebElement notificationMsg;
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
     }
@@ -76,4 +85,24 @@ public class ShoppingCartPage extends BasePage {
         //test
     }
 
+    public void setQuantity(String qty){
+        wait.until(ExpectedConditions.visibilityOf(prdQtyText));
+        Actions act=new Actions(driver);
+        act.moveToElement(prdQtyText);
+        prdQtyText.click();
+        prdQtyText.clear();
+        wait.until(ExpectedConditions.elementToBeClickable(prdQtyText));
+        prdQtyText.click();
+        act.sendKeys(qty).build().perform();
+    }
+
+    public void addToCart(){
+      //  =wait.until(ExpectedConditions.visibilityOf(addToCartButton));
+        WebElement ele=wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+      //  ((JavascriptExecutor)driver).executeScript("argument[0].scrollIntoView(true);",ele);
+        ele.click();
+    }
+    public String getNotificationmsg(){
+       return wait.until(ExpectedConditions.visibilityOf(notificationMsg)).getText();
+    }
 }

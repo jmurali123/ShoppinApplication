@@ -5,3 +5,7 @@ Feature: Placing an oder
     When I add a product with quantity to the cart
       | product                       | quantity |
       | Build your own cheap computer | 3        |
+    Then I should see successmsg
+      | successMsg                                       |
+      | The product has been added to your shopping cart |
+    
