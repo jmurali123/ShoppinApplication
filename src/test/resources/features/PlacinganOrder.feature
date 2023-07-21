@@ -8,4 +8,4 @@ Feature: Placing an oder
     Then I should see successmsg
       | successMsg                                       |
       | The product has been added to your shopping cart |
-    
+
